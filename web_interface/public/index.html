@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Smart Home Hub</title>
+</head>
+<body>
+  <h1>Smart Home Control</h1>
+  <button onclick="sendCommand('ON')">Turn ON</button>
+  <button onclick="sendCommand('OFF')">Turn OFF</button>
+  <p>Status: <span id="status">Waiting...</span></p>
+
+  <script>
+    function sendCommand(state) {
+      fetch(`/control?state=${state}`)
+        .then(response => response.text())
+        .then(data => document.getElementById('status').innerText = data);
+    }
+  </script>
+</body>
+</html>
